@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 
+// set up connection to MongoDB
 let isConnected = false; // track the connection
 
+// connect to MongoDB
 export const connectToDatabase = async () => {
   mongoose.set("strictQuery", true);
   if (isConnected) {
@@ -9,6 +11,7 @@ export const connectToDatabase = async () => {
     return;
   }
 
+  // connect to MongoDB
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
       dbName: "promptopia",
@@ -16,6 +19,7 @@ export const connectToDatabase = async () => {
       useUnifiedTopology: true,
     });
 
+    // set isConnected to true
     isConnected = true;
 
     console.log("MongoDB connected");

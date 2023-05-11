@@ -13,10 +13,12 @@ const CreatePrompt = () => {
   const [submitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
 
+  // Create Prompt
   const createPrompt = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Create Promp
     try {
       const response = await fetch("/api/prompt/new", {
         method: "POST",
@@ -27,9 +29,11 @@ const CreatePrompt = () => {
         }),
       });
 
+      // Redirect to home page
       if (response.ok) {
         router.push("/");
       }
+      // Error
     } catch (error) {
       console.log(error);
     } finally {
@@ -39,7 +43,7 @@ const CreatePrompt = () => {
 
   return (
     <Form
-      type='Create'
+      type="Create"
       post={post}
       setPost={setPost}
       submitting={submitting}
